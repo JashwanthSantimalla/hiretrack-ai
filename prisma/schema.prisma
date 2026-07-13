@@ -1,0 +1,11 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../lib/db/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Models are introduced in Milestone 1 (Core Data Model).
