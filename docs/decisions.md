@@ -74,3 +74,28 @@ Instead of acting as a generic resume summarizer, the AI will:
 - Recommend the most suitable candidates.
 
 Resume summaries will remain a supporting feature rather than the primary focus.
+
+---
+
+## 13 July 2026
+
+### Decision
+
+Use Prisma ORM with Neon PostgreSQL.
+
+### Reason
+
+- Excellent integration with Next.js
+- Type-safe database access
+- Serverless PostgreSQL
+- Suitable free tier
+- Easy deployment on Vercel
+
+### Alternatives Considered
+
+- Supabase
+- Railway PostgreSQL
+
+### Result
+
+Approved.

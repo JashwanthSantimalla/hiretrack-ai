@@ -123,3 +123,24 @@ Long-Term Direction
 Although the current focus is Version 1, the application should be designed with future SaaS scalability in mind.
 
 Architectural and design decisions should avoid limiting future growth whenever practical
+
+---
+
+## Current Technical Stack
+
+Frontend
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+
+Backend
+- Next.js Server Actions
+
+Database
+- Prisma ORM
+- Neon PostgreSQL
+
+Status
+
+Milestone 0 completed.

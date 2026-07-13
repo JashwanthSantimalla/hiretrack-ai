@@ -59,3 +59,26 @@ Future versions may include:
 - Analytics dashboard
 - Integration with LinkedIn and job portals
 - Multi-company support
+
+
+## Milestone 0 ✅
+
+- Project Initialization
+- Prisma
+- Neon Database
+- GitHub Setup
+
+Status:
+Completed
+
+-----------------------------------
+
+## Milestone 1
+
+- Database Schema
+- Authentication
+- Landing Page
+- Dashboard Skeleton
+
+Status:
+In Progress
