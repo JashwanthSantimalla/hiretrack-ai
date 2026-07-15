@@ -49,3 +49,28 @@ git push
 
 Status:
 Completed
+
+# Changelog
+
+## Milestone 1 – Core Database Schema (2026-07-15)
+
+### Added
+- Designed and implemented the core HireTrack AI database schema using Prisma ORM.
+- Added Company, User, Job, Candidate, Application, Resume, MatchResult, Note, and Interview models.
+- Implemented role-based access with UserRole enum.
+- Added application pipeline workflow using PipelineStatus.
+- Added interview scheduling models and enums.
+- Implemented relationships between all core entities.
+- Added database indexes for commonly queried fields.
+- Added soft-delete support for Company, Job, and Candidate models.
+
+### Database
+- Generated Prisma Client successfully.
+- Created and applied the initial database migration (`milestone-1-core-schema`).
+- Successfully validated the schema and synchronized it with the Neon PostgreSQL database.
+
+### Documentation
+- Updated architecture documentation.
+- Updated domain model documentation.
+- Finalized business rules for the MVP.
+- Documented candidate-company ownership and recruitment workflow.
