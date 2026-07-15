@@ -74,3 +74,19 @@ Completed
 - Updated domain model documentation.
 - Finalized business rules for the MVP.
 - Documented candidate-company ownership and recruitment workflow.
+
+## Milestone 2 – Authentication Foundation (2026-07-15)
+
+### Added
+- Installed Auth.js v5 with Prisma Adapter.
+- Added authentication models (`Account`, `Session`, `VerificationToken`) to the Prisma schema.
+- Extended the `User` model for Auth.js compatibility (`image`, `emailVerified`).
+- Created and applied the `milestone_2_auth` Prisma migration.
+- Added `lib/auth.ts` and `lib/auth.config.ts`.
+- Configured the Auth.js API route at `app/api/auth/[...nextauth]/route.ts`.
+- Generated and configured `AUTH_SECRET`.
+
+### Verified
+- Prisma schema formats and validates successfully.
+- Authentication migration applied successfully.
+- `/api/auth/session` endpoint returns `null` when unauthenticated, confirming Auth.js is correctly configured.
