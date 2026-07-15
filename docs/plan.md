@@ -82,3 +82,91 @@ Completed
 
 Status:
 In Progress
+
+---
+
+# Updated Roadmap
+
+## Milestone 0 ✅
+Project Foundation
+- Next.js Setup
+- TypeScript
+- Prisma ORM
+- Neon PostgreSQL
+- Documentation
+- GitHub Integration
+
+Status: Completed
+
+---
+
+## Milestone 1 🚧
+Core Domain & Database
+
+- Finalize ATS Architecture
+- Design Recruiter Workflow
+- Design Database Schema
+- Implement Prisma Models
+- Create Initial Migration
+- Update Documentation
+- Professional README
+
+Status: In Progress
+
+---
+
+## Milestone 2
+Authentication & Authorization
+
+- Company Authentication
+- Recruiter Login
+- User Roles
+- Protected Routes
+
+Status: Pending
+
+---
+
+## Milestone 3
+Recruitment Workflow
+
+- Dashboard
+- Job Management
+- Candidate Management
+- Applicant Pipeline
+
+Status: Pending
+
+---
+
+## Milestone 4
+AI Features
+
+- Resume Parsing
+- Resume Scoring
+- Candidate Ranking
+
+Status: Pending
+
+---
+
+## Milestone 5
+Interview Management
+
+- Interview Scheduling
+- Scorecards
+- Recruiter Notes
+
+Status: Pending
+
+---
+
+## Milestone 6
+Analytics & Deployment
+
+- Hiring Analytics
+- Performance Dashboard
+- Deployment
+- Production Testing
+
+Status: Pending

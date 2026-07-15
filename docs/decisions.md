@@ -99,3 +99,75 @@ Use Prisma ORM with Neon PostgreSQL.
 ### Result
 
 Approved.
+
+---
+
+# Decision 004
+
+## Title
+
+HireTrack AI Product Direction
+
+## Date
+
+13 July 2026
+
+## Decision
+
+HireTrack AI will be developed as an internal Applicant Tracking System (ATS) for recruiters rather than a public job marketplace.
+
+## Rationale
+
+Recruiters receive applications from external platforms such as LinkedIn, Indeed, Internshala, referrals, and company career pages.
+
+HireTrack AI begins managing candidates after applications have been received.
+
+This allows the platform to focus on:
+
+- Applicant Pipeline
+- AI Resume Parsing
+- AI Candidate Scoring
+- Interview Scheduling
+- Hiring Workflow
+
+instead of competing with job marketplaces.
+
+## Consequences
+
+- Recruiters are the primary users.
+- Companies are tenants within the platform.
+- Candidates do not require accounts in the MVP.
+- Future versions may introduce a candidate portal if business requirements evolve.
+
+---
+
+# Decision 005
+
+## Title
+
+Candidate Data Ownership
+
+## Date
+
+13 July 2026
+
+## Decision
+
+Candidates are independent entities and do not belong directly to a company.
+
+Companies access candidates through job applications rather than owning candidate records.
+
+## Rationale
+
+A candidate may apply to multiple companies over time.
+
+Keeping candidates independent prevents duplicate records and allows the system to maintain a single candidate profile while preserving company-specific application history.
+
+Applications act as the relationship between a candidate and a company's job opening.
+
+## Consequences
+
+- Candidate records remain reusable.
+- Companies only access candidates through applications.
+- Duplicate candidate records are minimized.
+- The data model better supports future platform expansion.

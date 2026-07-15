@@ -144,3 +144,64 @@ Database
 Status
 
 Milestone 0 completed.
+
+---
+
+# Product Vision (Finalized)
+
+HireTrack AI is an AI-powered Applicant Tracking System (ATS) designed for recruiters, hiring managers, and HR teams.
+
+The platform is intended to streamline the recruitment workflow after job applications have been received.
+
+HireTrack AI is **not** a job marketplace like LinkedIn, Indeed, or Internshala. Instead, it serves as an internal recruitment management platform used by organizations to manage candidates throughout the hiring process.
+
+## Core Workflow
+
+External Job Platforms
+(LinkedIn, Indeed, Internshala, Company Careers)
+
+↓
+
+Candidates Apply
+
+↓
+
+Recruiter Receives Applications
+
+↓
+
+HireTrack AI
+
+↓
+
+AI Resume Parsing
+
+↓
+
+AI Candidate Scoring
+
+↓
+
+Applicant Pipeline
+
+↓
+
+Interview Scheduling
+
+↓
+
+Hiring Decision
+
+## Primary Users
+
+- Recruiters
+- Hiring Managers
+- HR Administrators
+
+## Candidate Interaction
+
+Candidates are not primary users of the platform during the MVP.
+
+Applications originate from external recruitment channels and are managed internally by recruiters using HireTrack AI.
+
+Future versions may introduce a dedicated candidate portal if required.
