@@ -9,3 +9,218 @@ datasource db {
 }
 
 // Models are introduced in Milestone 1 (Core Data Model).
+
+enum UserRole {
+  ADMIN
+  RECRUITER
+  HIRING_MANAGER
+}
+
+enum JobStatus {
+  DRAFT
+  OPEN
+  CLOSED
+}
+
+enum PipelineStatus {
+  NEW
+  UNDER_REVIEW
+  SHORTLISTED
+  INTERVIEW
+  SELECTED
+  REJECTED
+}
+
+enum NoteType {
+  RECRUITER
+  INTERVIEW
+  AI
+}
+
+enum InterviewStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  RESCHEDULED
+}
+
+enum InterviewResult {
+  PENDING
+  PASSED
+  FAILED
+}
+
+model Company {
+  id        String    @id @default(cuid())
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  users      User[]
+  jobs       Job[]
+  candidates Candidate[]
+}
+
+model User {
+  id       String   @id @default(cuid())
+  name     String
+  email    String   @unique
+  password String
+  role     UserRole
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  jobs       Job[]       @relation("CreatedJobs")
+  interviews Interview[] @relation("Interviewer")
+  notes      Note[]      @relation("AuthorNotes")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([companyId])
+}
+
+model Job {
+  id          String    @id @default(cuid())
+  title       String
+  description String
+  status      JobStatus @default(DRAFT)
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  createdById String
+  createdBy   User   @relation("CreatedJobs", fields: [createdById], references: [id])
+
+  applications Application[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([companyId])
+  @@index([status])
+}
+
+model Candidate {
+  id String @id @default(cuid())
+
+  name  String
+  email String?
+  phone String?
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  applications Application[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@index([companyId])
+  @@index([email])
+}
+
+model Application {
+  id String @id @default(cuid())
+
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+
+  jobId String
+  job   Job    @relation(fields: [jobId], references: [id])
+
+  status PipelineStatus @default(NEW)
+
+  resume      Resume?
+  matchResult MatchResult?
+  notes       Note[]
+  interviews  Interview[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([candidateId, jobId])
+  @@index([status])
+}
+
+model Resume {
+  id String @id @default(cuid())
+
+  applicationId String      @unique
+  application   Application @relation(fields: [applicationId], references: [id])
+
+  fileKey  String
+  fileName String
+  mimeType String
+  fileSize Int
+
+  extractedText String?
+
+  uploadedAt DateTime @default(now())
+}
+
+model MatchResult {
+  id String @id @default(cuid())
+
+  applicationId String      @unique
+  application   Application @relation(fields: [applicationId], references: [id])
+
+  matchScore Int
+
+  reasoning String
+
+  recommendation String
+
+  createdAt DateTime @default(now())
+}
+
+model Note {
+  id String @id @default(cuid())
+
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id])
+
+  authorId String?
+  author   User?   @relation("AuthorNotes", fields: [authorId], references: [id])
+
+  type NoteType @default(RECRUITER)
+
+  content String
+
+  createdAt DateTime @default(now())
+
+  @@index([applicationId])
+}
+
+model Interview {
+  id String @id @default(cuid())
+
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id])
+
+  interviewerId String?
+  interviewer   User?   @relation("Interviewer", fields: [interviewerId], references: [id])
+
+  round String?
+
+  scheduledAt DateTime
+
+  durationMinutes Int?
+
+  meetingLink String?
+
+  status InterviewStatus @default(SCHEDULED)
+
+  result InterviewResult @default(PENDING)
+
+  feedback String?
+
+  createdAt DateTime @default(now())
+
+  @@index([applicationId])
+  @@index([scheduledAt])
+}

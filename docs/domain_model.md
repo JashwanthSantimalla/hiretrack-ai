@@ -16,6 +16,7 @@ The Application is the central entity of HireTrack AI and connects candidates, j
 - Every application owns the resume submitted for that specific job.
 - Every application progresses through the recruitment pipeline.
 - Recruiters interact with applications rather than directly managing candidates.
+- Every job is created by exactly one user.
 
 ### Relationships
 
@@ -142,6 +143,7 @@ Represents the resume submitted for a specific job application.
 - The database stores only metadata and the file reference.
 - The original resume remains associated with the application for historical accuracy.
 - Resume parsing extracts structured candidate information for AI analysis.
+- Resume files are uploaded by recruiters and linked to applications.
 
 ---
 
@@ -243,3 +245,5 @@ The following principles guide all future development of HireTrack AI.
 - Features are introduced only when supported by clear business requirements.
 - Recruiters remain the primary users of the MVP.
 - AI assists decision-making but never replaces recruiter judgment.
+- Company data must always remain isolated from other companies.
+- Deletion of business records should preserve historical recruitment data whenever possible.
