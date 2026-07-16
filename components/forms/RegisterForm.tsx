@@ -39,7 +39,6 @@ export function RegisterForm() {
   });
 
   const onSubmit = async (data: RegisterSchema) => {
-    console.log(data);
   try {
     setIsLoading(true);
 
@@ -60,7 +59,6 @@ export function RegisterForm() {
 
     alert("Workspace created successfully!");
 
-    console.log(result);
 
     form.reset();
 

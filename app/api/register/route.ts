@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
+import { Prisma } from "@/lib/db/generated/prisma/client";
 import { prisma } from "@/lib/db/prisma";
 import { registerSchema } from "@/lib/validators/register";
 
@@ -50,21 +51,23 @@ export async function POST(req: Request) {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Create company + first admin user
-    const company = await prisma.company.create({
-      data: {
-        name: companyName,
-      },
-    });
+    // Create company + admin user in a single transaction
+    const user = await prisma.$transaction(async (tx) => {
+      const company = await tx.company.create({
+        data: {
+          name: companyName,
+        },
+      });
 
-    const user = await prisma.user.create({
-      data: {
-        name: fullName,
-        email,
-        password: hashedPassword,
-        role: "ADMIN",
-        companyId: company.id,
-      },
+      return tx.user.create({
+        data: {
+          name: fullName,
+          email,
+          password: hashedPassword,
+          role: "ADMIN",
+          companyId: company.id,
+        },
+      });
     });
 
     return NextResponse.json(
@@ -79,6 +82,20 @@ export async function POST(req: Request) {
     );
   } catch (error) {
     console.error(error);
+
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === "P2002"
+    ) {
+      return NextResponse.json(
+        {
+          error: "Email already registered.",
+        },
+        {
+          status: 409,
+        }
+      );
+    }
 
     return NextResponse.json(
       {
