@@ -1,22 +1,29 @@
 # HireTrack AI
 
-> An AI-powered Applicant Tracking System (ATS) built to help recruiters streamline hiring through intelligent resume analysis, applicant tracking, and interview management.
+> AI-powered Applicant Tracking System (ATS) built to help recruiters streamline hiring through intelligent resume analysis, candidate management, and AI-assisted decision making.
+
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-4169E1?logo=postgresql)
+![Auth.js](https://img.shields.io/badge/Auth.js-v5-000000)
 
 ---
 
-## Overview
+# Overview
 
 HireTrack AI is a modern Applicant Tracking System designed for recruiters, hiring managers, and HR teams.
 
-Unlike job portals, HireTrack AI focuses on what happens **after** applications are received. Recruiters can upload resumes, organize candidates, evaluate AI-generated match scores, manage interview pipelines, and make hiring decisions from a single platform.
+Unlike job portals, HireTrack AI focuses on what happens **after** candidates apply. Recruiters can manage jobs, upload resumes, organize applicants, evaluate AI-generated match scores, track hiring pipelines, and make hiring decisions from a single platform.
 
-The project is being developed following professional software engineering practices with an emphasis on documentation, scalability, and maintainability.
+The project follows a documentation-first development workflow inspired by professional software engineering practices.
 
 ---
 
-## Problem Statement
+# The Problem
 
-Recruiters often receive hundreds of resumes from platforms like:
+Recruiters often receive hundreds of resumes from platforms such as:
 
 - LinkedIn
 - Indeed
@@ -24,45 +31,55 @@ Recruiters often receive hundreds of resumes from platforms like:
 - Company Career Pages
 - Employee Referrals
 
-Reviewing and shortlisting candidates manually is repetitive and time-consuming.
+Reviewing every resume manually is repetitive, time-consuming, and increases the chance of overlooking qualified candidates.
 
-HireTrack AI aims to simplify this process using AI-assisted resume parsing, candidate management, and hiring workflows.
+HireTrack AI reduces this workload by helping recruiters quickly identify the strongest applicants using AI-assisted analysis.
 
 ---
 
-## MVP Features
+# MVP Features
 
-### Recruiter Authentication
+## Authentication
 
-- Secure login
+- Secure authentication with Auth.js
 - Role-based access
 - Company-based data isolation
 
-### Job Management
+## Dashboard
 
-- Create job openings
-- Manage active positions
-- Track hiring status
+- Recruiter dashboard
+- Hiring overview
+- AI insights
+- Recruitment metrics
 
-### Resume Management
+## Job Management
+
+- Create and manage job openings
+- Store job descriptions
+- Track hiring progress
+
+## Resume Management
 
 - Upload PDF resumes
 - Resume parsing
 - Candidate creation
 
-### Candidate Management
+## Candidate Management
 
 - Candidate profiles
-- Application history
+- Applicant pipeline
 - Recruiter notes
+- Hiring status management
 
-### AI Matching
+## AI Features
 
-- Resume analysis
-- Job matching
-- AI-generated recommendations
+- Resume parsing
+- Candidate matching
+- Match scoring
+- Skill gap analysis
+- AI hiring recommendations
 
-### Interview Management
+## Interview Management
 
 - Interview scheduling
 - Interview feedback
@@ -70,42 +87,48 @@ HireTrack AI aims to simplify this process using AI-assisted resume parsing, can
 
 ---
 
-## Technology Stack
+# Technology Stack
 
-### Frontend
+## Frontend
 
-- Next.js
-- React
+- Next.js 16
+- React 19
 - TypeScript
 - Tailwind CSS
 
-### Backend
+## Backend
 
-- Next.js App Router
+- Next.js Server Actions
+- Route Handlers
+
+## Database
+
+- PostgreSQL
 - Prisma ORM
+- Neon
 
-### Database
+## Authentication
 
-- PostgreSQL (Neon)
+- Auth.js v5
 
-### Authentication
+## AI
 
-- Auth.js
+- OpenAI API *(planned)*
 
-### AI
+## Storage
 
-- OpenAI API (planned)
-
-### Storage
-
-- Cloud Object Storage (planned)
+- Cloud Object Storage *(planned)*
 
 ---
 
-## Project Architecture
+# Architecture
 
 ```
 Recruiter
+
+↓
+
+Application Shell
 
 ↓
 
@@ -113,27 +136,19 @@ Dashboard
 
 ↓
 
-Job
+Jobs
 
 ↓
 
-Resume Upload
+Applications
 
 ↓
 
-AI Resume Parsing
+AI Analysis
 
 ↓
 
-Candidate
-
-↓
-
-Application
-
-↓
-
-Interview
+Interviews
 
 ↓
 
@@ -142,110 +157,130 @@ Hiring Decision
 
 ---
 
-## Core Domain
+# Project Structure
 
-The application is built around the following entities:
-
-- Company
-- User
-- Job
-- Candidate
-- Application
-- Resume
-- Match Result
-- Interview
-- Note
-
----
-
-## Current Progress
-
-### Completed
-
-- Project foundation
-- Documentation
-- Product architecture
-- Domain model
-- Prisma database schema
-- PostgreSQL integration
-- Database migrations
-
-### ✅ Milestone 2 Completed
-
-- Auth.js v5 integration
-- Prisma Adapter configuration
-- Authentication database models
-- Secure session configuration
-- Authentication API routes
-
-### In Progress
-
-- Authentication
-- Dashboard
-- Job management
-
-### Planned
-
-- Resume upload
-- AI resume matching
-- Candidate pipeline
-- Interview management
-- Analytics
+```
+app/
+components/
+config/
+docs/
+lib/
+prisma/
+public/
+styles/
+```
 
 ---
 
-## Documentation
+# Current Progress
 
-Project documentation can be found inside the `docs` directory.
+## ✅ Completed
 
-- Project Context
-- Requirements
-- Architecture
+- Project Foundation
+- Documentation System
+- Product Architecture
 - Domain Model
+- Prisma Database Schema
+- PostgreSQL Integration
+- Authentication Foundation
+- Application Shell v1
+
+## 🚧 In Progress
+
+- Recruiter Dashboard
+
+## 📋 Planned
+
+- Job Management
+- Candidate Management
+- Applicant Pipeline
+- AI Resume Parsing
+- AI Match Scoring
+- Interview Management
+- Analytics
+- Production Deployment
+
+---
+
+# Roadmap
+
+| Milestone | Status |
+|------------|--------|
+| Project Foundation | ✅ |
+| Core Database Schema | ✅ |
+| Authentication Foundation | ✅ |
+| Application Shell v1 | ✅ |
+| Recruiter Dashboard | 🚧 |
+| Job Management | ⏳ |
+| Candidate Management | ⏳ |
+| AI Resume Parsing | ⏳ |
+| AI Match Scoring | ⏳ |
+| Interview Management | ⏳ |
+| Analytics | ⏳ |
+| Production Deployment | ⏳ |
+
+---
+
+# Screenshots
+
+## Application Shell v1
+
+![Application Shell](docs/screenshots/shell-v1.png)
+
+The application shell provides the foundation for all authenticated pages. It features a modular AppShell architecture, a floating glass navbar, a configuration-driven sidebar, and a premium dark-first design system.
+
+---
+
+More screenshots will be added as new milestones are completed.
+
+- Recruiter Dashboard *(Coming Soon)*
+- Job Management *(Coming Soon)*
+- Candidate Management *(Coming Soon)*
+
+---
+
+# Documentation
+
+Project documentation is available inside the `docs/` directory.
+
+- Architecture
+- Design System
 - Decisions
-- Changelog
+- Domain Model
+- Requirements
 - Development Plan
+- Changelog
+- Setup Guide
+- Project Context
 
 ---
 
-## Development Philosophy
+# Development Philosophy
 
-This project follows a documentation-first approach.
+HireTrack AI follows a **documentation-first** approach.
 
-Every major architectural decision is documented before implementation.
+Every major architectural and product decision is documented before implementation begins.
 
-The goal is to build HireTrack AI using the same engineering workflow followed by professional software teams.
+Core principles include:
 
----
-
-## Roadmap
-
-- ✅ Milestone 0 – Project Setup
-- ✅ Milestone 1 – Core Database Schema
-- ⏳ Milestone 2 – Authentication
-- ⏳ Milestone 3 – Landing Page
-- ⏳ Milestone 4 – Dashboard
-- ⏳ Milestone 5 – Job Management
-- ⏳ Milestone 6 – Resume Upload
-- ⏳ Milestone 7 – AI Resume Analysis
-- ⏳ Milestone 8 – Candidate Management
-- ⏳ Milestone 9 – Interview Management
-- ⏳ Milestone 10 – Search & Filters
-- ⏳ Milestone 11 – Analytics
-- ⏳ Milestone 12 – Production Deployment
+- Documentation is the source of truth.
+- Build reusable components.
+- Separate configuration from presentation.
+- Prefer simplicity over unnecessary complexity.
+- Build features on top of a stable application shell.
 
 ---
 
-## Status
+# Current Status
 
-🚧 Active Development
+**Active Development**
 
-This project is currently under active development.
+The application foundation is complete.
 
-New features are being implemented incrementally following milestone-based development.
+Current development is focused on building the recruiter dashboard and core recruitment workflow.
 
 ---
 
-## License
+# License
 
 This project is developed for educational, portfolio, and research purposes.

@@ -1,29 +1,45 @@
-# HireTrack AI Design System v1
+# HireTrack AI Design System v1.0
 
-## Design Philosophy
+> Last Updated: July 2026
 
-HireTrack AI should feel like a premium AI-native SaaS product.
+---
+
+# Design Philosophy
+
+HireTrack AI is designed as a premium AI-native SaaS platform for recruiters.
+
+The interface should communicate professionalism, speed, intelligence, and clarity without unnecessary visual complexity.
+
+Every UI decision should reinforce one goal:
+
+> Help recruiters make hiring decisions faster.
+
+The experience is inspired by modern SaaS products such as:
+
+- Linear
+- Raycast
+- Cursor
+- Vercel
+- Arc Browser
+
+The product should feel calm, modern, premium, and AI-first.
+
+---
+
+# Core Design Principles
 
 The interface should be:
 
-- Minimalistic
-- Premium
-- Modern
-- Clean
-- Smooth
-- Fast
+- Minimal
 - Professional
+- Premium
+- Fast
+- Consistent
 - AI-first
+- Accessible
+- Scalable
 
-Inspired by products like:
-
-- Higgsfield
-- Linear
-- Raycast
-- Arc Browser
-- Vercel
-
-The UI should never feel cluttered or overly colorful.
+Design should never distract from the user's workflow.
 
 ---
 
@@ -31,195 +47,368 @@ The UI should never feel cluttered or overly colorful.
 
 Dark-first.
 
-Light theme may be introduced in the future.
+The MVP officially supports a premium dark theme.
+
+A light theme may be introduced in future releases.
 
 ---
 
-# Color Palette
+# Color System
 
 ## Background
 
-Primary:
+Primary
+
+```
 #09090B
+```
 
-Secondary:
+Secondary Surface
+
+```
 #111417
+```
 
-Elevated:
+Elevated Surface
+
+```
 #171A1D
+```
 
----
+Borders
 
-## Borders
-
+```
 #1F262D
+```
 
 ---
 
-## Text
+## Typography
 
-Primary:
+Primary Text
+
+```
 #F5F7FA
+```
 
-Secondary:
+Secondary Text
+
+```
 #9DA7B2
+```
 
-Muted:
+Muted Text
+
+```
 #66707B
+```
 
 ---
 
 ## Brand Accent
 
-Primary Turquoise:
+Primary
+
+```
 #22DDB8
+```
 
-Hover:
+Hover
+
+```
 #38F0D0
+```
 
-Focus:
+Focus
+
+```
 #73E8DE
-
-Glow:
-rgba(34,221,184,0.18)
+```
 
 ---
 
 ## Semantic Colors
 
-Success:
+Success
+
+```
 #22C55E
+```
 
-Warning:
+Warning
+
+```
 #FBBF24
+```
 
-Danger:
+Danger
+
+```
 #EF4444
+```
 
 ---
 
 # Layout
 
-Sidebar Width:
-280px
+Sidebar Width
 
-Navbar Height:
-72px
+```
+264px
+```
 
-Content Padding:
+Navbar Height
+
+```
+70px
+```
+
+Search Width
+
+```
+540px
+```
+
+Content Padding
+
+```
 32px
+```
 
 ---
 
 # Border Radius
 
-Cards:
+Cards
+
+```
 16px
+```
 
-Buttons:
+Buttons
+
+```
 12px
+```
 
-Inputs:
+Inputs
+
+```
 12px
+```
 
----
+Avatars
 
-# Shadows
-
-Very soft.
-
-Never harsh.
-
-Use subtle elevation.
-
----
-
-# Motion
-
-Everything should animate.
-
-Animations must feel smooth and premium.
-
-Hover:
-200ms
-
-Page transitions:
-250ms
-
-Ease:
-ease-out
-
----
-
-# Sidebar
-
-Minimal.
-
-Thin active indicator.
-
-Turquoise accent.
-
-Soft hover.
-
-No loud backgrounds.
-
----
-
-# Cards
-
-Dark surface.
-
-Thin borders.
-
-Lots of breathing room.
-
-Hover lift.
-
-Subtle glow.
-
----
-
-# Buttons
-
-Primary:
-Filled turquoise.
-
-Secondary:
-Dark with border.
-
-Hover:
-Brightness increase + smooth transition.
+```
+Full Rounded
+```
 
 ---
 
 # Typography
 
-Modern.
+Primary Font
 
-Clean.
+```
+Geist Sans
+```
 
-Readable.
+Monospace
 
-Use Geist.
+```
+Geist Mono
+```
+
+Typography should prioritize readability over decoration.
 
 ---
 
 # Icons
 
-Lucide.
+Lucide React
 
-Simple.
+Icons should remain simple, lightweight, and visually consistent throughout the application.
 
-Consistent.
+---
+
+# Motion
+
+Hover Animation
+
+```
+200ms
+```
+
+Page Transition
+
+```
+250ms
+```
+
+Easing
+
+```
+ease-out
+```
+
+Motion should feel subtle and premium.
+
+---
+
+# Navigation
+
+The application shell consists of:
+
+- Left Sidebar
+- Top Navbar
+- Main Content Area
+
+The sidebar is the primary navigation.
+
+The navbar provides global actions.
+
+---
+
+# Sidebar
+
+The sidebar contains:
+
+- Brand Identity
+- Primary Navigation
+- Workspace Card
+
+The sidebar intentionally does not contain the user profile.
+
+The sidebar remains visually stable across the application.
+
+---
+
+# Navbar
+
+The navbar contains:
+
+- Global Search
+- Notifications
+- User Profile
+
+The navbar should appear lightweight and visually separated from the page content.
+
+---
+
+# Workspace Card
+
+The workspace card represents the current organization.
+
+It is not a user profile.
+
+Future functionality may include:
+
+- Workspace switching
+- Billing
+- Organization settings
+
+---
+
+# Visual Hierarchy
+
+Attention should naturally flow:
+
+```
+Navbar
+
+↓
+
+Dashboard Heading
+
+↓
+
+Primary KPI Cards
+
+↓
+
+Hiring Pipeline
+
+↓
+
+AI Insights
+
+↓
+
+Supporting Information
+```
+
+---
+
+# Ambient Lighting
+
+A subtle turquoise ambient glow is used to give depth to the dashboard.
+
+The glow should:
+
+- remain extremely subtle
+- never compete with content
+- enhance focus rather than decoration
+
+---
+
+# Cards
+
+Cards should use:
+
+- elevated dark surfaces
+- thin borders
+- generous spacing
+- subtle hover effects
+
+Cards should never feel heavy.
+
+---
+
+# Buttons
+
+Primary
+
+Filled turquoise.
+
+Secondary
+
+Dark surface with border.
+
+Hover
+
+Brightness increase with smooth transition.
 
 ---
 
 # General Rules
 
-- Black dominates.
+- Black dominates the interface.
 - Turquoise guides attention.
-- Use color intentionally.
-- Prioritize whitespace.
-- Keep interfaces clean.
-- Motion should feel effortless.
-- Every interaction should feel premium.
+- Use whitespace generously.
+- Borders should remain subtle.
+- Avoid unnecessary gradients.
+- Avoid excessive shadows.
+- Motion should support usability.
+- Every interaction should feel intentional.
+
+---
+
+# Shell Status
+
+Application Shell
+
+```
+Version 1.0
+```
+
+Status
+
+```
+Frozen
+```
+
+The application shell is considered complete.
+
+Future work should focus on feature development rather than redesigning the shell.
+
+Design refinements should only occur when supported by new product requirements.

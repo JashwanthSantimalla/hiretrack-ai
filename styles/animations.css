@@ -1,0 +1,203 @@
+/* ==========================================================
+   HireTrack Design System (HTDS)
+   Motion System
+   ========================================================== */
+
+/* ==========================================================
+   KEYFRAMES
+   ========================================================== */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+
+    transform: scale(.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: var(--shadow-sm);
+  }
+
+  50% {
+    box-shadow: var(--shadow-glow);
+  }
+
+  100% {
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+/* ==========================================================
+   PAGE
+   ========================================================== */
+
+.page-enter {
+  animation:
+    fade-in var(--duration-normal)
+      var(--ease-standard),
+    slide-up var(--duration-normal)
+      var(--ease-standard);
+}
+
+/* ==========================================================
+   FADE
+   ========================================================== */
+
+.fade-in {
+  animation:
+    fade-in var(--duration-normal)
+      var(--ease-standard);
+}
+
+/* ==========================================================
+   SLIDE
+   ========================================================== */
+
+.slide-up {
+  animation:
+    slide-up var(--duration-normal)
+      var(--ease-standard);
+}
+
+.slide-down {
+  animation:
+    slide-down var(--duration-normal)
+      var(--ease-standard);
+}
+
+/* ==========================================================
+   SCALE
+   ========================================================== */
+
+.scale-in {
+  animation:
+    scale-in var(--duration-normal)
+      var(--ease-standard);
+}
+
+/* ==========================================================
+   HOVER
+   ========================================================== */
+
+.hover-lift {
+  transition:
+    transform var(--duration-normal)
+      var(--ease-standard),
+    box-shadow var(--duration-normal)
+      var(--ease-standard);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-md);
+}
+
+.hover-scale {
+  transition:
+    transform var(--duration-fast)
+      var(--ease-standard);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.hover-glow {
+  transition:
+    box-shadow var(--duration-normal)
+      var(--ease-standard);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+/* ==========================================================
+   INTERACTIVE
+   ========================================================== */
+
+.interactive {
+  transition:
+    background-color var(--duration-normal)
+      var(--ease-standard),
+
+    border-color var(--duration-normal)
+      var(--ease-standard),
+
+    color var(--duration-normal)
+      var(--ease-standard),
+
+    box-shadow var(--duration-normal)
+      var(--ease-standard),
+
+    transform var(--duration-fast)
+      var(--ease-standard);
+}
+
+.interactive:active {
+  transform: scale(.985);
+}
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+
+    transition: none !important;
+
+    scroll-behavior: auto !important;
+  }
+}

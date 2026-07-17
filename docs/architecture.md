@@ -1,270 +1,315 @@
 # HireTrack AI Architecture
 
-## Overview
-
-HireTrack AI is a full-stack web application designed to help users track job applications, manage resumes, prepare for interviews, and leverage AI-powered career assistance.
-
-The application follows a modern web architecture using Next.js, Prisma ORM, and Neon PostgreSQL.
+> Last Updated: July 2026
 
 ---
 
-## Technology Stack
+# Overview
 
-### Frontend
+HireTrack AI is a modern AI-powered Applicant Tracking System (ATS) built using a documentation-first and modular architecture.
+
+The application is designed around a clear separation of responsibilities between the user interface, business logic, data layer, and infrastructure.
+
+The architecture prioritizes:
+
+- Scalability
+- Maintainability
+- Reusability
+- Type Safety
+- Developer Experience
+
+---
+
+# Technology Stack
+
+## Frontend
 
 - Next.js 16
 - React 19
 - TypeScript
 - Tailwind CSS
 
-### Backend
+## Backend
 
 - Next.js Server Actions
-- Prisma ORM
+- Route Handlers
 
-### Database
+## Database
 
 - PostgreSQL
+- Prisma ORM
 - Neon Serverless Database
 
-### Version Control
+## Authentication
+
+- Auth.js v5
+
+## Version Control
 
 - Git
 - GitHub
 
 ---
 
-## Current Architecture
+# High-Level Architecture
 
 ```
 Browser
-    │
-    ▼
+
+↓
+
 Next.js Application
-    │
-    ▼
+
+↓
+
+Server Actions / Route Handlers
+
+↓
+
 Prisma ORM
-    │
-    ▼
+
+↓
+
 Neon PostgreSQL
 ```
 
 ---
 
-## Folder Structure
+# Application Layers
+
+```
+Presentation Layer
+
+↓
+
+Business Logic
+
+↓
+
+Data Access
+
+↓
+
+Database
+```
+
+Each layer has a single responsibility and should not unnecessarily depend on unrelated layers.
+
+---
+
+# UI Architecture
+
+The user interface follows a shell-based architecture.
+
+```
+AppShell
+
+├── Sidebar
+│   ├── SidebarHeader
+│   ├── SidebarNavigation
+│   └── SidebarFooter
+│
+├── Navbar
+│
+└── Page Content
+```
+
+The shell remains persistent while individual pages change inside the content area.
+
+---
+
+# Configuration Layer
+
+Application configuration is separated from UI components.
+
+Configuration includes:
+
+- Product branding
+- Navigation
+- Future application settings
+
+This allows UI components to remain reusable and presentation-focused.
+
+---
+
+# Styling Architecture
+
+Styling is organized into reusable layers.
+
+```
+styles/
+
+├── globals.css
+├── tokens.css
+├── utilities.css
+├── animations.css
+└── scrollbar.css
+```
+
+Responsibilities:
+
+**tokens.css**
+
+Design tokens including colors, spacing, borders, and semantic values.
+
+**globals.css**
+
+Global application styling and ambient background effects.
+
+**utilities.css**
+
+Reusable utility classes.
+
+**animations.css**
+
+Shared motion and transition definitions.
+
+**scrollbar.css**
+
+Custom scrollbar styling.
+
+---
+
+# Folder Structure
 
 ```
 app/
+components/
+config/
 docs/
 lib/
 prisma/
 public/
+styles/
 ```
 
 ---
 
-## Database Layer
+# Database Layer
 
-The application communicates with the PostgreSQL database through Prisma ORM.
+Prisma ORM provides type-safe communication with the PostgreSQL database.
 
-Prisma Client is generated from the Prisma schema and provides type-safe database access.
+Responsibilities include:
+
+- Database schema
+- Migrations
+- Type-safe queries
+- Relationship management
 
 ---
 
-## Current Status
+# Authentication Layer
 
-Current Milestone:
-Milestone 0 — Project Initialization
+Authentication is handled using Auth.js.
 
-Status:
-Completed
+Responsibilities include:
 
-Last Updated:
-13 July 2026
+- User authentication
+- Session management
+- Secure route protection
+- Role-based access
 
-# Domain Model
+---
 
-## Resume Intake Workflow (MVP)
+# Design System
 
-### Supported Input
+The application uses a centralized design system.
 
-- PDF Resume Upload
+The design system defines:
 
-### Workflow
+- Colors
+- Typography
+- Spacing
+- Border radius
+- Motion
+- Layout
+- Component consistency
 
-Recruiter Login
+All UI should follow the documented design system.
 
-↓
+---
 
-Create Job
+# Development Workflow
 
-↓
+HireTrack AI follows a documentation-first workflow.
 
-Upload Resume (PDF)
+The standard development cycle is:
 
-↓
-
-AI Resume Parsing
-
-↓
-
-Extract Candidate Information
-
-↓
-
-Check for Existing Candidate
+```
+Requirements
 
 ↓
 
-Create or Link Candidate
+Planning
 
 ↓
 
-Create Job Application
+Documentation
 
 ↓
 
-Generate AI Match Score
+Architecture
 
 ↓
 
-Place Candidate in Applicant Pipeline
+Implementation
 
-### Future Extensions
+↓
 
-- CSV Import
-- Email Integration
-- Third-Party Recruitment Platform Integrations
+Verification
 
-## Company
+↓
 
-### Purpose
-Represents a customer organization using HireTrack AI to manage its hiring process.
+Documentation Update
+```
 
-### Business Rules
+Major implementation should never begin before the relevant documentation has been finalized.
 
-- A company is the tenant boundary for the application.
-- Each company has its own recruiters, jobs, candidates, and hiring data.
-- The MVP supports one company per account.
-- A company can have multiple users.
-- A company can create multiple jobs.
-- Users from one company cannot access another company's data.
-- All jobs created in the system belong to exactly one company.
+---
 
-### Relationships
+# Current Architecture Status
 
-Company
-├── Users (One-to-Many)
-└── Jobs (One-to-Many)
+## Completed
 
-## User
+- Project foundation
+- Documentation system
+- Database architecture
+- Domain model
+- Prisma integration
+- Authentication foundation
+- Application Shell v1
+- Configuration-driven navigation
+- Centralized design system
 
-### Purpose
+---
 
-Represents an authenticated employee of a company who uses HireTrack AI to manage the recruitment process.
+## In Progress
 
-### Business Rules
+- Recruiter Dashboard
 
-- Every user belongs to exactly one company.
-- A user cannot belong to multiple companies in the MVP.
-- Every user has exactly one role.
-- Users authenticate before accessing the platform.
-- Users can only access data belonging to their own company.
-- Recruiters create and manage jobs.
-- Recruiters review candidates and applications.
-- Hiring Managers review shortlisted candidates and provide interview feedback.
-- Administrators manage company users and system settings.
+---
 
-### Roles
+## Planned
 
-- ADMIN
-- RECRUITER
-- HIRING_MANAGER
+- Job Management
+- Candidate Management
+- Applicant Pipeline
+- AI Resume Parsing
+- AI Match Scoring
+- Interview Management
+- Analytics
+- Production Deployment
 
-### Relationships
+---
 
-Company
-└── Users (One-to-Many)
+# Architectural Principles
 
-## Job
+The following principles guide all future development:
 
-### Purpose
-
-Represents an open hiring position created by a company for a specific role.
-
-### Business Rules
-
-- Every job belongs to exactly one company.
-- Every job is created by one user.
-- A company can create multiple jobs.
-- A job can receive multiple applications.
-- Jobs progress through their own lifecycle (e.g., Draft, Open, Closed).
-- Recruiters manage jobs within their company.
-- Jobs are the entry point for candidate applications inside HireTrack AI.
-
-### Relationships
-
-Company
-└── Jobs (One-to-Many)
-
-User
-└── Jobs (One-to-Many)
-
-Job
-└── Applications (One-to-Many)
-
-## Candidate
-
-### Purpose
-
-Represents a person who has applied for one or more job openings managed within HireTrack AI.
-
-### Business Rules
-
-- Candidates do not authenticate into the platform in the MVP.
-- Candidates originate from external recruitment channels.
-- A candidate may apply to multiple jobs.
-- A candidate is represented by a single profile within the system.
-- Candidate records are independent of companies.
-- Companies access candidates through job applications.
-- Candidate information can be updated by recruiters when necessary.
-
-### Relationships
-
-Candidate
-└── Applications (One-to-Many)
-
-## Application
-
-### Purpose
-
-Represents a candidate's application for a specific job opening.
-
-The Application is the central entity of HireTrack AI and connects candidates, jobs, resumes, AI analysis, recruiter notes, and interviews into a single recruitment workflow.
-
-### Business Rules
-
-- Every application belongs to exactly one candidate.
-- Every application belongs to exactly one job.
-- A candidate may apply to multiple jobs.
-- A job may receive multiple applications.
-- A candidate cannot apply to the same job more than once.
-- Every application owns the resume submitted for that specific job.
-- Every application progresses through the recruitment pipeline.
-- Recruiters interact with applications rather than directly managing candidates.
-
-### Relationships
-
-Application
-
-├── Candidate (Many-to-One)
-
-├── Job (Many-to-One)
-
-├── Resume (One-to-One)
-
-├── AI Match Result (One-to-One)
-
-├── Notes (One-to-Many)
-
-└── Interviews (One-to-Many)
+- Documentation is the source of truth.
+- Prefer composition over duplication.
+- Keep components focused on a single responsibility.
+- Separate configuration from presentation.
+- Prefer reusable solutions over one-off implementations.
+- Build features on top of the stable application shell.
+- Optimize for long-term maintainability rather than short-term speed.

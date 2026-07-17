@@ -1,104 +1,114 @@
 # Project Decisions
 
-## Project Name
+This document records major product, architectural, and design decisions made during the development of HireTrack AI.
 
-**HireTrack AI**
-
-The name represents a modern Applicant Tracking System (ATS) enhanced with Artificial Intelligence to help recruiters make faster and smarter hiring decisions.
+Each decision captures **what was decided**, **why it was decided**, and **its long-term impact**.
 
 ---
 
-## Why This Project?
+# Decision 001
 
-Recruiters often spend hours manually reviewing resumes to identify suitable candidates.
+## Title
 
-Existing Applicant Tracking Systems help organize applications but still require significant manual effort to compare candidates against job requirements.
+Project Direction
 
-HireTrack AI aims to automate the initial screening process by intelligently matching resumes with job descriptions.
+## Date
 
----
+13 July 2026
 
-## Target Audience
+## Decision
 
-Our primary users are:
+HireTrack AI will be developed as an AI-powered Applicant Tracking System (ATS) rather than a public job marketplace.
 
-- Small and Medium-sized Businesses (SMBs)
-- Startups
-- HR Teams
+## Rationale
+
+The product focuses on improving the internal recruitment workflow after applications have already been received.
+
+Applications originate from external platforms such as:
+
+- LinkedIn
+- Indeed
+- Internshala
+- Company Career Pages
+- Referrals
+
+HireTrack AI begins where those platforms end.
+
+## Consequences
+
+Primary users are:
+
 - Recruiters
 - Hiring Managers
+- HR Administrators
 
-These organizations frequently hire talent but may not have access to expensive enterprise recruitment software.
-
----
-
-## Design Goals
-
-The product should be:
-
-- Simple and intuitive
-- Fast and responsive
-- Mobile-friendly
-- Professional
-- Easy to navigate
-- Scalable for future growth
+Candidates are not authenticated users during the MVP.
 
 ---
 
-## Success Criteria
+# Decision 002
 
-A recruiter should be able to:
+## Title
 
-1. Create a job opening.
-2. Paste a job description.
-3. Upload one or more resumes.
-4. Instantly view AI-generated Match Scores.
-5. Understand why a candidate is a good or poor fit.
-6. Shortlist the best candidates within minutes.
+Technology Stack
+
+## Date
+
+13 July 2026
+
+## Decision
+
+Use:
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Prisma ORM
+- Neon PostgreSQL
+- Auth.js
+
+## Rationale
+
+The selected stack provides:
+
+- Type safety
+- Scalability
+- Excellent developer experience
+- Strong Next.js integration
+- Easy deployment
+
+## Status
+
+Approved
 
 ---
 
-## AI Strategy
+# Decision 003
 
-Our AI focuses on solving one core business problem:
+## Title
 
-**Helping recruiters identify the best candidates for a specific job.**
+Candidate Ownership
 
-Instead of acting as a generic resume summarizer, the AI will:
+## Date
 
-- Extract skills and experience from resumes.
-- Understand job requirements from the job description.
-- Calculate a Candidate Match Score.
-- Highlight missing skills.
-- Explain the reasoning behind each score.
-- Recommend the most suitable candidates.
+13 July 2026
 
-Resume summaries will remain a supporting feature rather than the primary focus.
+## Decision
 
----
+Candidates remain independent entities.
 
-## 13 July 2026
+Companies access candidates through Applications rather than owning candidate records directly.
 
-### Decision
+## Rationale
 
-Use Prisma ORM with Neon PostgreSQL.
+A candidate may apply to multiple companies.
 
-### Reason
+Maintaining one candidate profile avoids duplication while preserving application history.
 
-- Excellent integration with Next.js
-- Type-safe database access
-- Serverless PostgreSQL
-- Suitable free tier
-- Easy deployment on Vercel
+## Consequences
 
-### Alternatives Considered
-
-- Supabase
-- Railway PostgreSQL
-
-### Result
-
-Approved.
+Applications become the central business entity of the system.
 
 ---
 
@@ -106,7 +116,7 @@ Approved.
 
 ## Title
 
-HireTrack AI Product Direction
+AI Product Strategy
 
 ## Date
 
@@ -114,30 +124,21 @@ HireTrack AI Product Direction
 
 ## Decision
 
-HireTrack AI will be developed as an internal Applicant Tracking System (ATS) for recruiters rather than a public job marketplace.
+Artificial Intelligence exists to assist recruiters—not replace them.
 
 ## Rationale
 
-Recruiters receive applications from external platforms such as LinkedIn, Indeed, Internshala, referrals, and company career pages.
+The objective is to improve recruiter productivity while keeping hiring decisions under human control.
 
-HireTrack AI begins managing candidates after applications have been received.
+AI responsibilities include:
 
-This allows the platform to focus on:
+- Resume parsing
+- Candidate matching
+- Skill gap analysis
+- Match explanations
+- Hiring recommendations
 
-- Applicant Pipeline
-- AI Resume Parsing
-- AI Candidate Scoring
-- Interview Scheduling
-- Hiring Workflow
-
-instead of competing with job marketplaces.
-
-## Consequences
-
-- Recruiters are the primary users.
-- Companies are tenants within the platform.
-- Candidates do not require accounts in the MVP.
-- Future versions may introduce a candidate portal if business requirements evolve.
+Recruiters always make the final decision.
 
 ---
 
@@ -145,29 +146,156 @@ instead of competing with job marketplaces.
 
 ## Title
 
-Candidate Data Ownership
+Documentation-First Development
 
 ## Date
 
-13 July 2026
+14 July 2026
 
 ## Decision
 
-Candidates are independent entities and do not belong directly to a company.
-
-Companies access candidates through job applications rather than owning candidate records.
+Product and architectural decisions are finalized before implementation begins.
 
 ## Rationale
 
-A candidate may apply to multiple companies over time.
+Documentation-first development reduces unnecessary refactoring and keeps implementation aligned with the product vision.
 
-Keeping candidates independent prevents duplicate records and allows the system to maintain a single candidate profile while preserving company-specific application history.
+Documentation serves as the project's single source of truth.
 
-Applications act as the relationship between a candidate and a company's job opening.
+---
 
-## Consequences
+# Decision 006
 
-- Candidate records remain reusable.
-- Companies only access candidates through applications.
-- Duplicate candidate records are minimized.
-- The data model better supports future platform expansion.
+## Title
+
+Configuration-Driven UI
+
+## Date
+
+16 July 2026
+
+## Decision
+
+Static product information and navigation should live in configuration files rather than components.
+
+Examples include:
+
+- Product name
+- Tagline
+- Navigation
+- Branding
+
+## Rationale
+
+Separating configuration from UI components improves maintainability and allows branding changes without modifying component logic.
+
+---
+
+# Decision 007
+
+## Title
+
+Application Shell v1
+
+## Date
+
+17 July 2026
+
+## Decision
+
+The application shell was finalized before dashboard development.
+
+The shell consists of:
+
+- AppShell
+- Sidebar
+- Navbar
+- Design Tokens
+- Global Styling
+- Layout Components
+
+## Rationale
+
+A stable shell provides a consistent foundation for every future feature and page.
+
+Building features before stabilizing navigation and layout would lead to repeated redesign work.
+
+## Finalized Decisions
+
+Branding
+
+- Product Name: HireTrack AI
+- Subtitle: AI Recruitment Platform
+
+Layout
+
+- Sidebar Width: 264px
+- Navbar Height: 70px
+- Search Width: 540px
+
+Sidebar
+
+- Workspace card only
+- User profile removed
+- Workspace settings separated from user settings
+
+Navbar
+
+- Floating glass appearance
+- Global search
+- Notifications
+- User profile
+
+Visual Design
+
+- Dark-first
+- Turquoise accent
+- Premium AI-native SaaS style
+- Subtle dashboard ambient glow
+
+Status
+
+Shell v1 Frozen
+
+---
+
+# Decision 008
+
+## Title
+
+Dashboard-First Feature Development
+
+## Date
+
+17 July 2026
+
+## Decision
+
+Once the application shell is frozen, development effort shifts toward product functionality rather than further UI redesign.
+
+## Rationale
+
+Additional value now comes from:
+
+- Dashboard
+- Jobs
+- Candidates
+- Applicant Pipeline
+- AI Insights
+- Interview Management
+
+Future shell refinements should occur only when justified by new product requirements.
+
+---
+
+# Guiding Principles
+
+Every new feature should satisfy at least one of the following:
+
+- Reduce recruiter workload.
+- Improve hiring quality.
+- Save recruiter time.
+- Deliver meaningful AI assistance.
+- Maintain a premium user experience.
+
+If a feature does not contribute toward these objectives, it should be reconsidered before implementation.

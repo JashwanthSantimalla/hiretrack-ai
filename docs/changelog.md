@@ -90,3 +90,66 @@ Completed
 - Prisma schema formats and validates successfully.
 - Authentication migration applied successfully.
 - `/api/auth/session` endpoint returns `null` when unauthenticated, confirming Auth.js is correctly configured.
+
+---
+
+# Milestone 3 – Application Shell v1 (2026-07-17)
+
+## Added
+
+### Layout
+
+- Built the reusable `AppShell` layout component.
+- Implemented a persistent application shell with Sidebar, Navbar, and content area.
+- Established the layout foundation for all authenticated pages.
+
+### Sidebar
+
+- Built a modular sidebar architecture consisting of:
+  - SidebarHeader
+  - SidebarNavigation
+  - SidebarFooter
+- Moved branding into a centralized configuration file.
+- Implemented configuration-driven navigation.
+- Added a dedicated workspace card.
+- Removed the user profile from the sidebar to separate workspace and personal settings.
+
+### Navbar
+
+- Implemented a floating glass navbar.
+- Added a centered global search bar.
+- Added notification actions.
+- Added the authenticated user profile section.
+
+### Styling
+
+- Introduced a centralized design token system.
+- Added reusable animation utilities.
+- Added reusable utility classes.
+- Added custom scrollbar styling.
+- Added a subtle ambient dashboard glow to improve depth while maintaining a clean interface.
+
+### Design
+
+- Finalized the HireTrack AI visual identity.
+- Updated product subtitle to **AI Recruitment Platform**.
+- Standardized spacing, sizing, and navigation hierarchy.
+- Refined sidebar density and workspace card proportions.
+- Finalized the premium dark-first design language.
+
+### Documentation
+
+- Updated:
+  - Architecture
+  - Design System
+  - Project Decisions
+
+## Status
+
+Application Shell v1
+
+**Completed**
+
+The application shell is now considered stable and frozen.
+
+Future development will focus on implementing product features rather than redesigning the application shell.
