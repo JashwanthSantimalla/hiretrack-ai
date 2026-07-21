@@ -9,32 +9,15 @@ export default function SidebarNavigation() {
   const pathname = usePathname();
 
   return (
-    <nav
-      className="
-        flex-1
-        overflow-y-auto
-        px-4
-        py-5
-      "
-    >
-      <div className="space-y-6">
+    <nav className="flex-1 overflow-y-auto px-3 py-2">
+      <div className="space-y-3">
         {navigation.map((section) => (
           <section key={section.label}>
-            <h2
-              className="
-                mb-2
-                px-3
-                text-[11px]
-                font-semibold
-                uppercase
-                tracking-[0.18em]
-                text-muted
-              "
-            >
+            <h2 className="mb-1 px-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
               {section.label}
             </h2>
 
-            <div className="space-y-0.5">
+            <div className="space-y-0">
               {section.items.map((item) => {
                 const Icon = item.icon;
 
@@ -48,17 +31,16 @@ export default function SidebarNavigation() {
                     href={item.disabled ? "#" : item.href}
                     aria-disabled={item.disabled}
                     className={`
-                      interactive
                       group
                       relative
                       flex
+                      h-9
                       items-center
                       gap-2.5
                       overflow-hidden
-                      rounded-xl
+                      rounded-lg
                       px-3
-                      py-2.5
-                      text-sm
+                      text-[13px]
                       font-medium
                       transition-all
                       duration-200
@@ -73,7 +55,6 @@ export default function SidebarNavigation() {
                             text-secondary
                             hover:bg-surface-hover
                             hover:text-foreground
-                            hover:translate-x-1
                           `
                       }
 
@@ -87,8 +68,6 @@ export default function SidebarNavigation() {
                       }
                     `}
                   >
-                    {/* Active Indicator */}
-
                     {active && (
                       <span
                         className="
@@ -99,49 +78,25 @@ export default function SidebarNavigation() {
                           w-1
                           rounded-r-full
                           bg-primary
-                          shadow-glow
                         "
                       />
                     )}
 
-                    {/* Icon */}
-
                     <Icon
-                      size={18}
-                      className={`
-                        transition-colors
-                        duration-200
-
-                        ${
-                          active
-                            ? "text-primary"
-                            : "text-muted group-hover:text-primary"
-                        }
-                      `}
+                      size={16}
+                      className={
+                        active
+                          ? "text-primary"
+                          : "text-muted transition-colors group-hover:text-primary"
+                      }
                     />
-
-                    {/* Label */}
 
                     <span className="flex-1 truncate">
                       {item.label}
                     </span>
 
-                    {/* Badge */}
-
                     {item.badge && (
-                      <span
-                        className="
-                          rounded-full
-                          bg-primary/10
-                          px-2
-                          py-0.5
-                          text-[10px]
-                          font-semibold
-                          uppercase
-                          tracking-wide
-                          text-primary
-                        "
-                      >
+                      <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-primary">
                         {item.badge}
                       </span>
                     )}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 
 import {
   registerSchema,
@@ -26,6 +27,8 @@ import { Separator } from "@/components/ui/separator";
 export function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
 
+  const router = useRouter();
+
   const form = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
     mode: "onSubmit",
@@ -39,39 +42,36 @@ export function RegisterForm() {
   });
 
   const onSubmit = async (data: RegisterSchema) => {
-  try {
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
 
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    if (!response.ok) {
-      alert(result.error || "Something went wrong.");
-      return;
+      if (!response.ok) {
+        alert(result.error || "Something went wrong.");
+        return;
+      }
+
+      alert("Workspace created successfully! Please sign in.");
+
+      form.reset();
+
+      router.push("/login");
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    } finally {
+      setIsLoading(false);
     }
-
-    alert("Workspace created successfully!");
-
-
-    form.reset();
-
-    // Later:
-    // router.push("/verify-email");
-    // or router.push("/dashboard");
-  } catch (error) {
-    console.error(error);
-    alert("Something went wrong.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   return (
     <Card className="w-full max-w-md shadow-xl">
@@ -81,7 +81,6 @@ export function RegisterForm() {
             HireTrack AI
           </p>
 
-          {/* Logo placeholder */}
           <div className="h-8 w-8 rounded-md bg-muted" />
         </div>
 
@@ -116,8 +115,6 @@ export function RegisterForm() {
             <Separator className="flex-1" />
           </div>
 
-          {/* Email */}
-
           <div className="space-y-2">
             <Label htmlFor="email">Work Email</Label>
 
@@ -135,8 +132,6 @@ export function RegisterForm() {
             )}
           </div>
 
-          {/* Full Name */}
-
           <div className="space-y-2">
             <Label htmlFor="fullName">Full Name</Label>
 
@@ -152,8 +147,6 @@ export function RegisterForm() {
               </p>
             )}
           </div>
-
-          {/* Company */}
 
           <div className="space-y-2">
             <Label htmlFor="companyName">
@@ -173,8 +166,6 @@ export function RegisterForm() {
             )}
           </div>
 
-          {/* Password */}
-
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
 
@@ -191,8 +182,6 @@ export function RegisterForm() {
               </p>
             )}
           </div>
-
-          {/* Confirm Password */}
 
           <div className="space-y-2">
             <Label htmlFor="confirmPassword">

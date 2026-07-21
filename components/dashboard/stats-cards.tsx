@@ -9,8 +9,7 @@ import { StatCard } from "@/components/ui/stat-card";
 
 export function StatsCards() {
   return (
-    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-
+    <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
       <StatCard
         title="AI Recommended"
         value={12}
@@ -38,7 +37,6 @@ export function StatsCards() {
         description="Active hiring positions"
         icon={Briefcase}
       />
-
     </div>
   );
 }

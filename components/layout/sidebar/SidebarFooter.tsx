@@ -1,36 +1,25 @@
 "use client";
 
-import {
-  ChevronUp,
-  Building2,
-} from "lucide-react";
+import { Building2 } from "lucide-react";
 
 export default function SidebarFooter() {
   return (
-    <footer
-      className="
-        border-t
-        border-border
-        p-4
-      "
-    >
-      {/* Workspace */}
-
+    <footer className="border-t border-border px-3 py-3">
       <button
         className="
-          interactive
-          mb-4
           flex
           w-full
           items-center
-          gap-2.5
-          rounded-2xl
+          gap-3
+          rounded-xl
           border
           border-border
           bg-surface-elevated
-          p-3
+          px-3
+          py-2.5
+          transition-all
+          duration-200
           hover:border-primary/30
-          hover:shadow-glow
         "
       >
         <div
@@ -40,36 +29,25 @@ export default function SidebarFooter() {
             w-9
             items-center
             justify-center
-            rounded-xl
+            rounded-lg
             bg-primary/10
             text-primary
+            shrink-0
           "
         >
           <Building2 size={18} />
         </div>
 
-        <div className="flex-1 text-left">
-          <p
-            className="
-              text-sm
-              font-semibold
-            "
-          >
+        <div className="min-w-0 flex-1 text-left">
+          <p className="truncate text-[13px] font-semibold text-foreground">
             HireTrack AI
           </p>
 
-          <p
-            className="
-              text-xs
-              text-muted
-            "
-          >
+          <p className="truncate text-[11px] text-muted">
             Professional Workspace
           </p>
         </div>
       </button>
-
-      
     </footer>
   );
 }

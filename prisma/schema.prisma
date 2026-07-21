@@ -8,8 +8,6 @@ datasource db {
   provider = "postgresql"
 }
 
-// Models are introduced in Milestone 1 (Core Data Model).
-
 enum UserRole {
   ADMIN
   RECRUITER
@@ -20,6 +18,34 @@ enum JobStatus {
   DRAFT
   OPEN
   CLOSED
+}
+
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+}
+
+enum WorkplaceType {
+  ONSITE
+  HYBRID
+  REMOTE
+}
+
+enum ExperienceLevel {
+  FRESHER
+  JUNIOR
+  MID
+  SENIOR
+  LEAD
+}
+
+enum Currency {
+  INR
+  USD
+  EUR
+  GBP
 }
 
 enum PipelineStatus {
@@ -88,10 +114,41 @@ model User {
 }
 
 model Job {
-  id          String    @id @default(cuid())
-  title       String
+  id String @id @default(cuid())
+
+  title String
+
+  department String?
+
+  employmentType EmploymentType
+
+  workplaceType WorkplaceType
+
+  location String?
+
+  experienceLevel ExperienceLevel
+
+  minimumExperience Int @default(0)
+
+  salaryMin Int?
+
+  salaryMax Int?
+
+  currency Currency @default(INR)
+
+  openings Int @default(1)
+
+  applicationDeadline DateTime?
+
   description String
-  status      JobStatus @default(DRAFT)
+
+  requiredSkills String[]
+
+  preferredSkills String[]
+
+  minimumQualification String?
+
+  status JobStatus @default(DRAFT)
 
   companyId String
   company   Company @relation(fields: [companyId], references: [id])
@@ -107,13 +164,18 @@ model Job {
 
   @@index([companyId])
   @@index([status])
+  @@index([employmentType])
+  @@index([workplaceType])
+  @@index([experienceLevel])
 }
 
 model Candidate {
   id String @id @default(cuid())
 
-  name  String
+  name String
+
   email String?
+
   phone String?
 
   companyId String
@@ -140,10 +202,13 @@ model Application {
 
   status PipelineStatus @default(NEW)
 
-  resume      Resume?
+  resume Resume?
+
   matchResult MatchResult?
-  notes       Note[]
-  interviews  Interview[]
+
+  notes Note[]
+
+  interviews Interview[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

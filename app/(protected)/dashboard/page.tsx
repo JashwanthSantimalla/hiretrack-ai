@@ -11,7 +11,7 @@ export default async function DashboardPage() {
   const dashboard = await getDashboardData();
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-5">
       <DashboardHeader />
 
       {dashboard.isFirstTimeUser ? (
@@ -20,7 +20,7 @@ export default async function DashboardPage() {
         <>
           <StatsCards />
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-3 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <RecentActivity />
             </div>
